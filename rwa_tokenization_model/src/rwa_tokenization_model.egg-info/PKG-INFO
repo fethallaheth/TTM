@@ -1,0 +1,115 @@
+Metadata-Version: 2.4
+Name: rwa-tokenization-model
+Version: 0.1.0
+Summary: Tokenized Collateral Efficiency Model
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pandas>=2.0
+Requires-Dist: numpy>=1.24
+Requires-Dist: PyYAML>=6.0
+Requires-Dist: matplotlib>=3.7
+Requires-Dist: openpyxl>=3.1
+Requires-Dist: typer>=0.9
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+
+# Tokenized Collateral Efficiency Model
+
+This project implements a modular Python simulation model for studying how tokenizing part of a firm's marketable securities can affect collateral usability, liquidity buffers, funding costs, WACC, and ROE.
+
+The model is intentionally package-style rather than notebook-only. Core formulas are pure functions, assumptions live in `params.yaml`, and the CLI generates reproducible tables, charts, and reports.
+
+## Install
+
+From this directory:
+
+```bash
+python -m pip install -e .
+```
+
+For development and tests:
+
+```bash
+python -m pip install -e ".[dev]"
+```
+
+## Run
+
+Run the full model:
+
+```bash
+python -m rwa_model.cli run --params params.yaml
+```
+
+Run Monte Carlo only:
+
+```bash
+python -m rwa_model.cli monte-carlo --params params.yaml --n 10000 --seed 42
+```
+
+Run sensitivity only:
+
+```bash
+python -m rwa_model.cli sensitivity --params params.yaml
+```
+
+Generate charts only:
+
+```bash
+python -m rwa_model.cli charts --params params.yaml
+```
+
+## CLI Overrides
+
+Any assumption should be changed in `params.yaml` for normal use. The CLI also supports common overrides:
+
+```bash
+python -m rwa_model.cli run --params params.yaml --market-cap 4400
+python -m rwa_model.cli run --params params.yaml --adoption 0.40
+python -m rwa_model.cli run --params params.yaml --stress "Severe Stress"
+python -m rwa_model.cli run --params params.yaml --liquidity-base total-liquid-assets
+```
+
+The default liquidity base is `marketable-securities`, which uses total marketable securities. `total-liquid-assets` uses the broader treasury liquidity base.
+
+## Parameters
+
+All model numbers live in `params.yaml`. The config loader validates:
+
+- derived marketable securities and debt totals
+- required sections and fields
+- rates entered as decimals, such as `0.04` for 4%
+- tokenized haircut and liquidity buffer ratios are not worse than legacy ratios
+- Monte Carlo distributions are supported and well formed
+
+## Outputs
+
+The full run creates:
+
+- `outputs/tables/*.csv`
+- `outputs/reports/model_results.xlsx`
+- `outputs/charts/*.png`
+- `outputs/charts/*.pdf`
+
+The Excel workbook includes baseline, adoption, stress, grid, WACC, reinvestment, Monte Carlo, sensitivity, and parameter sheets.
+
+## Charts
+
+The chart set covers:
+
+1. Collateral efficiency frontier
+2. Cost of debt bridge
+3. Break-even technology risk premium
+4. Capital liberated adoption-stress matrix
+5. Book vs market WACC change
+6. ROE reinvestment sensitivity
+7. Liquidity-funding risk quadrant
+8. Monte Carlo capital liberated distribution
+9. Monte Carlo book WACC change distribution
+10. Monte Carlo market WACC change distribution
+11. Sensitivity tornado charts
+12. Net financial capacity waterfall
+
+## Interpretation
+
+Tokenization mainly affects collateral efficiency and liquidity buffer requirements. WACC effects are secondary and depend on whether collateral efficiency benefits exceed technology, legal, and custody risk premia. ROE effects are conditional on reinvesting liberated capital. Market-value WACC may barely move for firms with very large market capitalization because debt receives a small market-value weight.

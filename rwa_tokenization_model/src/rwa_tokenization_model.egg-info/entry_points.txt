@@ -1,0 +1,2 @@
+[console_scripts]
+rwa-model = rwa_model.cli:app

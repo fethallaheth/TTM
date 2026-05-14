@@ -1,0 +1,126 @@
+company_data:
+  cash_and_equivalents: 35.934
+  current_marketable_securities: 18.763
+  non_current_marketable_securities: 77.723
+  total_liquid_assets: 132.420
+  total_marketable_securities: 96.486
+  commercial_paper: 7.979
+  current_term_debt: 12.350
+  non_current_term_debt: 78.328
+  total_debt: 98.657
+  net_income: 112.010
+  shareholders_equity: 73.733
+  effective_tax_rate: 0.156
+  market_cap: 3200.0
+
+market_inputs:
+  risk_free_rate: 0.0400
+  beta: 1.20
+  market_risk_premium: 0.0500
+  cost_of_equity: 0.1000
+  legacy_cost_of_debt: 0.0419
+  debt_cost_floor_enabled: true
+  debt_cost_floor: 0.0400
+
+reinvestment:
+  base_reinvestment_return: 0.04
+  sensitivity_values: [0.00, 0.02, 0.04, 0.06, 0.08]
+
+adoption_scenarios:
+  Conservative: 0.10
+  Moderate: 0.25
+  Aggressive: 0.40
+
+baseline:
+  adoption_scenario: Moderate
+  stress_scenario: Normal Market
+
+stress_scenarios:
+  Normal Market:
+    legacy_haircut: 0.05
+    tokenized_haircut: 0.03
+    legacy_buffer_ratio: 0.20
+    tokenized_buffer_ratio: 0.14
+    collateral_efficiency_spread: 0.0070
+    technology_risk_premium: 0.0020
+
+  Moderate Stress:
+    legacy_haircut: 0.08
+    tokenized_haircut: 0.05
+    legacy_buffer_ratio: 0.24
+    tokenized_buffer_ratio: 0.16
+    collateral_efficiency_spread: 0.0050
+    technology_risk_premium: 0.0035
+
+  Severe Stress:
+    legacy_haircut: 0.12
+    tokenized_haircut: 0.08
+    legacy_buffer_ratio: 0.30
+    tokenized_buffer_ratio: 0.18
+    collateral_efficiency_spread: 0.0030
+    technology_risk_premium: 0.0050
+
+  2008-Style Liquidity Shock:
+    legacy_haircut: 0.18
+    tokenized_haircut: 0.12
+    legacy_buffer_ratio: 0.35
+    tokenized_buffer_ratio: 0.24
+    collateral_efficiency_spread: 0.0020
+    technology_risk_premium: 0.0070
+
+monte_carlo:
+  n_simulations: 10000
+  seed: 42
+
+  distributions:
+    tokenized_share:
+      type: uniform
+      low: 0.10
+      high: 0.40
+
+    legacy_haircut:
+      type: uniform
+      low: 0.04
+      high: 0.18
+
+    tokenized_haircut_discount:
+      type: uniform
+      low: 0.01
+      high: 0.06
+
+    legacy_buffer_ratio:
+      type: uniform
+      low: 0.18
+      high: 0.35
+
+    tokenized_buffer_ratio_discount:
+      type: uniform
+      low: 0.03
+      high: 0.12
+
+    collateral_efficiency_spread:
+      type: uniform
+      low: 0.002
+      high: 0.007
+
+    technology_risk_premium:
+      type: uniform
+      low: 0.001
+      high: 0.009
+
+    reinvestment_return:
+      type: uniform
+      low: 0.00
+      high: 0.08
+
+chart_settings:
+  save_png: true
+  save_pdf: true
+  dpi: 300
+  style: clean_finance
+  currency_unit: USD billions
+
+risk_adjusted_capacity:
+  settlement_saving: 0.0
+  technology_risk_cost: 0.0
+  legal_custody_risk_cost: 0.0

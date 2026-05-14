@@ -1,0 +1,86 @@
+parameter,value
+company_data.cash_and_equivalents,35.934
+company_data.current_marketable_securities,18.763
+company_data.non_current_marketable_securities,77.723
+company_data.total_liquid_assets,132.42
+company_data.total_marketable_securities,96.486
+company_data.commercial_paper,7.979
+company_data.current_term_debt,12.35
+company_data.non_current_term_debt,78.328
+company_data.total_debt,98.657
+company_data.net_income,112.01
+company_data.shareholders_equity,73.733
+company_data.effective_tax_rate,0.156
+company_data.market_cap,3200.0
+market_inputs.risk_free_rate,0.04
+market_inputs.beta,1.2
+market_inputs.market_risk_premium,0.05
+market_inputs.cost_of_equity,0.1
+market_inputs.legacy_cost_of_debt,0.0419
+market_inputs.debt_cost_floor_enabled,True
+market_inputs.debt_cost_floor,0.04
+reinvestment.base_reinvestment_return,0.04
+reinvestment.sensitivity_values,"[0.0, 0.02, 0.04, 0.06, 0.08]"
+adoption_scenarios.Conservative,0.1
+adoption_scenarios.Moderate,0.25
+adoption_scenarios.Aggressive,0.4
+baseline.adoption_scenario,Moderate
+baseline.stress_scenario,Normal Market
+stress_scenarios.Normal Market.legacy_haircut,0.05
+stress_scenarios.Normal Market.tokenized_haircut,0.03
+stress_scenarios.Normal Market.legacy_buffer_ratio,0.2
+stress_scenarios.Normal Market.tokenized_buffer_ratio,0.14
+stress_scenarios.Normal Market.collateral_efficiency_spread,0.007
+stress_scenarios.Normal Market.technology_risk_premium,0.002
+stress_scenarios.Moderate Stress.legacy_haircut,0.08
+stress_scenarios.Moderate Stress.tokenized_haircut,0.05
+stress_scenarios.Moderate Stress.legacy_buffer_ratio,0.24
+stress_scenarios.Moderate Stress.tokenized_buffer_ratio,0.16
+stress_scenarios.Moderate Stress.collateral_efficiency_spread,0.005
+stress_scenarios.Moderate Stress.technology_risk_premium,0.0035
+stress_scenarios.Severe Stress.legacy_haircut,0.12
+stress_scenarios.Severe Stress.tokenized_haircut,0.08
+stress_scenarios.Severe Stress.legacy_buffer_ratio,0.3
+stress_scenarios.Severe Stress.tokenized_buffer_ratio,0.18
+stress_scenarios.Severe Stress.collateral_efficiency_spread,0.003
+stress_scenarios.Severe Stress.technology_risk_premium,0.005
+stress_scenarios.2008-Style Liquidity Shock.legacy_haircut,0.18
+stress_scenarios.2008-Style Liquidity Shock.tokenized_haircut,0.12
+stress_scenarios.2008-Style Liquidity Shock.legacy_buffer_ratio,0.35
+stress_scenarios.2008-Style Liquidity Shock.tokenized_buffer_ratio,0.24
+stress_scenarios.2008-Style Liquidity Shock.collateral_efficiency_spread,0.002
+stress_scenarios.2008-Style Liquidity Shock.technology_risk_premium,0.007
+monte_carlo.n_simulations,10000
+monte_carlo.seed,42
+monte_carlo.distributions.tokenized_share.type,uniform
+monte_carlo.distributions.tokenized_share.low,0.1
+monte_carlo.distributions.tokenized_share.high,0.4
+monte_carlo.distributions.legacy_haircut.type,uniform
+monte_carlo.distributions.legacy_haircut.low,0.04
+monte_carlo.distributions.legacy_haircut.high,0.18
+monte_carlo.distributions.tokenized_haircut_discount.type,uniform
+monte_carlo.distributions.tokenized_haircut_discount.low,0.01
+monte_carlo.distributions.tokenized_haircut_discount.high,0.06
+monte_carlo.distributions.legacy_buffer_ratio.type,uniform
+monte_carlo.distributions.legacy_buffer_ratio.low,0.18
+monte_carlo.distributions.legacy_buffer_ratio.high,0.35
+monte_carlo.distributions.tokenized_buffer_ratio_discount.type,uniform
+monte_carlo.distributions.tokenized_buffer_ratio_discount.low,0.03
+monte_carlo.distributions.tokenized_buffer_ratio_discount.high,0.12
+monte_carlo.distributions.collateral_efficiency_spread.type,uniform
+monte_carlo.distributions.collateral_efficiency_spread.low,0.002
+monte_carlo.distributions.collateral_efficiency_spread.high,0.007
+monte_carlo.distributions.technology_risk_premium.type,uniform
+monte_carlo.distributions.technology_risk_premium.low,0.001
+monte_carlo.distributions.technology_risk_premium.high,0.009
+monte_carlo.distributions.reinvestment_return.type,uniform
+monte_carlo.distributions.reinvestment_return.low,0.0
+monte_carlo.distributions.reinvestment_return.high,0.08
+chart_settings.save_png,True
+chart_settings.save_pdf,True
+chart_settings.dpi,300
+chart_settings.style,clean_finance
+chart_settings.currency_unit,USD billions
+risk_adjusted_capacity.settlement_saving,0.0
+risk_adjusted_capacity.technology_risk_cost,0.0
+risk_adjusted_capacity.legal_custody_risk_cost,0.0
