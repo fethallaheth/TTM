@@ -1,0 +1,33 @@
+group,scenario,variable,value
+Adoption,Conservative,tokenized_share,0.1
+Adoption,Moderate,tokenized_share,0.25
+Adoption,Aggressive,tokenized_share,0.4
+Stress,Normal Market,legacy_haircut,0.05
+Stress,Normal Market,tokenized_haircut,0.03
+Stress,Normal Market,legacy_buffer_ratio,0.2
+Stress,Normal Market,tokenized_buffer_ratio,0.14
+Stress,Normal Market,collateral_efficiency_spread,0.007
+Stress,Normal Market,technology_risk_premium,0.002
+Stress,Moderate Stress,legacy_haircut,0.08
+Stress,Moderate Stress,tokenized_haircut,0.05
+Stress,Moderate Stress,legacy_buffer_ratio,0.24
+Stress,Moderate Stress,tokenized_buffer_ratio,0.16
+Stress,Moderate Stress,collateral_efficiency_spread,0.005
+Stress,Moderate Stress,technology_risk_premium,0.0035
+Stress,Severe Stress,legacy_haircut,0.12
+Stress,Severe Stress,tokenized_haircut,0.08
+Stress,Severe Stress,legacy_buffer_ratio,0.3
+Stress,Severe Stress,tokenized_buffer_ratio,0.18
+Stress,Severe Stress,collateral_efficiency_spread,0.003
+Stress,Severe Stress,technology_risk_premium,0.005
+Stress,2008-Style Liquidity Shock,legacy_haircut,0.18
+Stress,2008-Style Liquidity Shock,tokenized_haircut,0.12
+Stress,2008-Style Liquidity Shock,legacy_buffer_ratio,0.35
+Stress,2008-Style Liquidity Shock,tokenized_buffer_ratio,0.24
+Stress,2008-Style Liquidity Shock,collateral_efficiency_spread,0.002
+Stress,2008-Style Liquidity Shock,technology_risk_premium,0.007
+Reinvestment,Sensitivity,reinvestment_return,0.0
+Reinvestment,Sensitivity,reinvestment_return,0.02
+Reinvestment,Sensitivity,reinvestment_return,0.04
+Reinvestment,Sensitivity,reinvestment_return,0.06
+Reinvestment,Sensitivity,reinvestment_return,0.08

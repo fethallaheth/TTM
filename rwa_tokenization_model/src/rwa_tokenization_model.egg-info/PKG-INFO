@@ -93,6 +93,10 @@ The full run creates:
 
 The Excel workbook includes baseline, adoption, stress, grid, WACC, reinvestment, Monte Carlo, sensitivity, and parameter sheets.
 
+## Thesis Context
+
+This repo supports the applied chapter of a Master thesis on RWA tokenization and financial market efficiency. The model uses Apple as a real-company baseline to test a counterfactual collateral mechanism; it does not predict Apple's actual treasury strategy. It compares a traditional collateral framework with a tokenized RWA collateral framework, with main outputs focused on usable collateral, capital liberated, WACC change, and ROE change. The key interpretation is that liquidity efficiency is more robust than WACC reduction.
+
 ## Charts
 
 The chart set covers:

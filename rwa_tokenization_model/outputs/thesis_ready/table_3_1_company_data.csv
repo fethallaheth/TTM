@@ -1,0 +1,14 @@
+variable,parameter,value,source_type
+Cash and equivalents,cash_and_equivalents,35.934,Apple Form 10-K
+Current marketable securities,current_marketable_securities,18.763,Apple Form 10-K
+Non-current marketable securities,non_current_marketable_securities,77.723,Apple Form 10-K
+Total liquid assets,total_liquid_assets,132.42,Apple Form 10-K
+Total marketable securities,total_marketable_securities,96.486,Apple Form 10-K
+Commercial paper,commercial_paper,7.979,Apple Form 10-K
+Current term debt,current_term_debt,12.35,Apple Form 10-K
+Non-current term debt,non_current_term_debt,78.328,Apple Form 10-K
+Total debt,total_debt,98.657,Apple Form 10-K
+Net income,net_income,112.01,Apple Form 10-K
+Shareholders' equity,shareholders_equity,73.733,Apple Form 10-K
+Effective tax rate,effective_tax_rate,0.156,Apple Form 10-K
+Market capitalization,market_cap,3200.0,Public market / valuation source

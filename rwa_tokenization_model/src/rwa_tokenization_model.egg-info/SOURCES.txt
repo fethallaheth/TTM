@@ -10,6 +10,7 @@ src/rwa_model/monte_carlo.py
 src/rwa_model/scenarios.py
 src/rwa_model/sensitivity.py
 src/rwa_model/tables.py
+src/rwa_model/thesis_outputs.py
 src/rwa_model/utils.py
 src/rwa_tokenization_model.egg-info/PKG-INFO
 src/rwa_tokenization_model.egg-info/SOURCES.txt
@@ -20,3 +21,4 @@ src/rwa_tokenization_model.egg-info/top_level.txt
 tests/test_config.py
 tests/test_engine.py
 tests/test_formulas.py
+tests/test_thesis_invariants.py

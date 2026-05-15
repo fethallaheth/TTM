@@ -1,0 +1,8 @@
+variable,definition,thesis_treatment
+tokenized_share,Share of marketable securities modeled as tokenized collateral,Scenario assumption
+tokenized_collateral_pool,Marketable securities multiplied by tokenized share,Simulation input
+additional_usable_collateral,Mixed usable collateral less full legacy usable collateral,Simulation result
+capital_liberated,Reduction in modeled liquidity buffer requirement,Simulation result
+book_wacc_change,Tokenized book-value WACC less legacy book-value WACC,Conditional result
+market_wacc_change,Tokenized market-value WACC less legacy market-value WACC,Conditional result
+roe_change,Adjusted ROE less legacy ROE using book shareholders' equity,Conditional result
