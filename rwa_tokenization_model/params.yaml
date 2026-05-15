@@ -11,16 +11,33 @@ company_data:
   net_income: 112.010
   shareholders_equity: 73.733
   effective_tax_rate: 0.156
-  market_cap: 3200.0
+
+  # Market value of equity, USD billions.
+  # Source basis: CompaniesMarketCap, May 2026.
+  market_cap: 4441.0
 
 market_inputs:
-  risk_free_rate: 0.0400
-  beta: 1.20
-  market_risk_premium: 0.0500
-  cost_of_equity: 0.1000
+  # Risk-free rate: 10-year U.S. Treasury yield, FRED DGS10.
+  risk_free_rate: 0.0446
+
+  # Apple beta, 5-year monthly.
+  beta: 1.07
+
+  # U.S. implied equity risk premium.
+  market_risk_premium: 0.0423
+
+  # CAPM:
+  # cost_of_equity = risk_free_rate + beta * market_risk_premium
+  # 0.0446 + 1.07 * 0.0423 = 0.089861 ≈ 8.99%
+  cost_of_equity: 0.0899
+
+  # Apple commercial paper weighted-average rate used as borrowing-cost proxy.
   legacy_cost_of_debt: 0.0419
-  debt_cost_floor_enabled: true
-  debt_cost_floor: 0.0400
+
+  # Disabled because current risk-free rate is above the legacy cost of debt.
+  # Keeping the floor enabled at 4.46% would mechanically eliminate the debt-cost benefit.
+  debt_cost_floor_enabled: false
+  debt_cost_floor: 0.0446
 
 reinvestment:
   base_reinvestment_return: 0.04

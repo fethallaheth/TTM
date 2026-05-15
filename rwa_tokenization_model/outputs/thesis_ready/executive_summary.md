@@ -2,7 +2,7 @@
 
 ## Baseline Result
 
-The baseline scenario tokenizes 25% of marketable securities, creating a tokenized collateral pool of USD 24.122 billion. Additional usable collateral is USD 0.482 billion and capital liberated is USD 1.447 billion. Book-value WACC changes by -0.0918 percentage points, while market-value WACC changes by -0.0048 percentage points.
+The baseline scenario tokenizes 25% of marketable securities, creating a tokenized collateral pool of USD 24.122 billion. Additional usable collateral is USD 0.482 billion and capital liberated is USD 1.447 billion. Book-value WACC changes by -0.2415 percentage points, while market-value WACC changes by -0.0092 percentage points.
 
 ## Adoption Result
 

@@ -11,14 +11,14 @@ company_data.total_debt,98.657
 company_data.net_income,112.01
 company_data.shareholders_equity,73.733
 company_data.effective_tax_rate,0.156
-company_data.market_cap,3200.0
-market_inputs.risk_free_rate,0.04
-market_inputs.beta,1.2
-market_inputs.market_risk_premium,0.05
-market_inputs.cost_of_equity,0.1
+company_data.market_cap,4441.0
+market_inputs.risk_free_rate,0.0446
+market_inputs.beta,1.07
+market_inputs.market_risk_premium,0.0423
+market_inputs.cost_of_equity,0.0899
 market_inputs.legacy_cost_of_debt,0.0419
-market_inputs.debt_cost_floor_enabled,True
-market_inputs.debt_cost_floor,0.04
+market_inputs.debt_cost_floor_enabled,False
+market_inputs.debt_cost_floor,0.0446
 reinvestment.base_reinvestment_return,0.04
 reinvestment.sensitivity_values,"[0.0, 0.02, 0.04, 0.06, 0.08]"
 adoption_scenarios.Conservative,0.1
