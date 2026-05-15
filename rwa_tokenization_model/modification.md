@@ -1,299 +1,342 @@
-Upgrade my existing Python model repo, but keep it minimal and thesis-focused.
+You are working on my Python financial simulation repo for my Master’s thesis applied chapter.
 
-The repo supports Chapter 3 of my Master thesis:
+IMPORTANT:
+Do NOT make it paper-style.
+Do NOT create abstract, introduction, literature review, conclusion, or full paper draft.
+Do NOT create outputs/paper_ready/.
+Do NOT use journal/manuscript language.
 
-Applied Simulation of Tokenized Treasury Collateral and Financial Market Efficiency
+The goal is to make the repo produce thesis-ready and defense-ready outputs for Chapter 3:
 
-The goal is not to turn the repo into a big research platform. I am already writing the thesis paper separately. The repo should only support the thesis by generating clean tables, clean charts, and clear documentation of assumptions.
+“Applied Simulation of Tokenized Treasury Collateral and Financial Market Efficiency”
 
-Preserve the main thesis interpretation:
+The applied chapter studies how tokenizing part of Apple Inc.’s marketable securities may affect:
 
-Tokenized collateral is tested as a collateral and liquidity infrastructure improvement. The strongest expected result is liquidity efficiency and capital liberated. WACC and ROE are secondary and conditional effects.
+- usable collateral
+- liquidity buffer requirements
+- capital liberated
+- cost of debt
+- WACC under book-value and market-value weights
+- ROE under conditional reinvestment
+- adoption scenarios
+- stress scenarios
+- Monte Carlo robustness
+- sensitivity analysis
+- model plausibility
 
-Do not present tokenization as automatically reducing WACC or automatically increasing profitability.
+Apple must be treated only as a computational baseline, not as a forecast that Apple will tokenize its assets.
 
-==================================================
-1. KEEP THE EXISTING MODEL WORKING
-==================================================
+Do not rebuild the model.
+Do not change the core financial logic.
+Do not remove existing outputs.
+Do not add unrelated quant-finance outputs such as efficient frontier, trading P&L VaR backtesting, or portfolio drawdown.
 
-Do not break the current model, formulas, CLI, outputs, or charts.
+The objective is to make the repo outputs easier to use directly in Chapter 3 and easier to defend in front of a jury.
 
-Only improve structure, exports, documentation, and thesis-ready outputs.
+TASK 1 — Keep or improve the thesis-ready output folder
 
-Do not add unnecessary complexity.
-
-==================================================
-2. ADD A SHORT README SECTION
-==================================================
-
-Update the README with a short section called:
-
-"Thesis Context"
-
-Include:
-
-- This repo supports the applied chapter of a Master thesis on RWA tokenization and financial market efficiency.
-- The model uses Apple as a real-company baseline to test a counterfactual collateral mechanism.
-- The repo does not predict Apple’s actual treasury strategy.
-- The model compares a traditional collateral framework with a tokenized RWA collateral framework.
-- The main outputs are usable collateral, capital liberated, WACC change, and ROE change.
-- The key interpretation is that liquidity efficiency is more robust than WACC reduction.
-
-Keep it concise.
-
-==================================================
-3. ADD A SIMPLE METHODOLOGY NOTE
-==================================================
-
-Create:
-
-docs/methodology_note.md
-
-Keep it short, around 1–2 pages.
-
-Include:
-
-1. Purpose of the model
-2. Counterfactual logic
-3. Transmission mechanism
-4. Book-value vs market-value WACC treatment
-5. Reinvestment channel
-6. Monte Carlo and sensitivity purpose
-7. Interpretation rule
-
-Use this mechanism:
-
-Marketable securities
-→ tokenized collateral pool
-→ haircut adjustment
-→ usable collateral
-→ liquidity buffer reduction
-→ capital liberated
-→ cost of debt, WACC, and ROE effects
-
-Make clear:
-
-- Apple is a baseline case, not an assumed adopter.
-- Tokenization does not create new capital.
-- Capital liberated means reduced liquidity buffer requirement.
-- WACC change is conditional on funding-cost assumptions.
-- ROE change is conditional on reinvestment of liberated capital.
-- Book vs market WACC is a capital-structure layer, not a separate model.
-
-==================================================
-4. ADD A SIMPLE SOURCE MAP
-==================================================
-
-Create:
-
-docs/source_map.md
-
-Include one table:
-
-| Variable Group | Variables | Source Type | Thesis Treatment |
-|---|---|---|---|
-
-Rows:
-
-1. Apple accounting data
-Variables:
-cash, marketable securities, debt, net income, shareholders’ equity, tax rate
-Source Type:
-Apple Form 10-K
-Thesis Treatment:
-Observed company data
-
-2. Market inputs
-Variables:
-risk-free rate, beta, market risk premium, market capitalization, legacy cost of debt
-Source Type:
-Public market / valuation sources
-Thesis Treatment:
-Market inputs
-
-3. Scenario assumptions
-Variables:
-adoption levels, haircuts, buffer ratios, collateral efficiency spread, technology risk premium, reinvestment return
-Source Type:
-Author calibration
-Thesis Treatment:
-Scenario assumptions
-
-4. Model outputs
-Variables:
-usable collateral, additional usable collateral, capital liberated, WACC change, ROE change
-Source Type:
-Python calculations
-Thesis Treatment:
-Simulation results
-
-Add one note:
-
-Calibrated assumptions should not be presented as directly observed Apple data.
-
-==================================================
-5. CREATE THESIS-READY OUTPUTS
-==================================================
-
-Create:
+Use:
 
 outputs/thesis_ready/
 
-Inside it, export only the tables and charts I will likely use in the thesis.
+Inside it, organize outputs as:
 
-Tables:
+outputs/thesis_ready/tables/
+outputs/thesis_ready/charts/
+outputs/thesis_ready/reports/
+outputs/thesis_ready/appendix/
 
-table_3_1_company_data.csv
-table_3_2_variable_definitions.csv
-table_3_3_scenario_assumptions.csv
-table_3_4_baseline_results.csv
-table_3_5_adoption_results.csv
-table_3_6_stress_results.csv
-table_3_7_monte_carlo_summary.csv
-table_3_8_sensitivity_summary.csv
-table_3_9_reinvestment_sensitivity.csv
+If the repo already has outputs/thesis_ready/, update it cleanly.
+Do not create outputs/paper_ready/.
 
-Do not delete existing outputs. Just create this clean thesis-ready folder.
+TASK 2 — Add missing defensive tables
 
-==================================================
-6. CREATE THESIS-READY CHARTS
-==================================================
+Create the following files:
 
-Create:
+outputs/thesis_ready/tables/parameter_justification.csv
+outputs/thesis_ready/reports/parameter_justification.md
 
-outputs/thesis_ready/charts/png
-outputs/thesis_ready/charts/svg
+The table should include:
 
-Export only the most important charts:
+- tokenized_asset_share
+- legacy_haircut
+- tokenized_haircut
+- legacy_buffer_ratio
+- tokenized_buffer_ratio
+- collateral_efficiency_spread
+- technology_risk_premium
+- reinvestment_return
+- debt_cost_floor
+- adoption scenario levels
+- stress scenario parameters
 
-1. transmission_mechanism
-2. cost_of_debt_bridge
-3. capital_liberated_by_adoption
-4. capital_liberated_under_stress
-5. wacc_change_under_stress_book_vs_market
-6. monte_carlo_distribution
-7. sensitivity_tornado
-8. reinvestment_sensitivity
+Columns:
 
-Use a clean academic finance style:
+- Parameter
+- Symbol
+- Baseline value
+- Conservative / lower value
+- Aggressive / upper value
+- Source type
+- Financial justification
+- Model channel affected
 
-- white background
-- dark navy text
-- muted blue accents
-- gray gridlines
-- clear titles
-- clear axis labels
-- no neon
-- no crypto-style visuals
+Source type must be one of:
 
-Do not remove the full chart folder. This is just the curated chart set for the thesis.
+- Observed company data
+- Market input
+- Scenario-calibrated assumption
+- Model output
 
-==================================================
-7. ADD FIGURE CAPTIONS
-==================================================
+Do not invent fake citations.
+If a parameter is not directly observed, classify it honestly as “Scenario-calibrated assumption.”
 
-Create:
-
-outputs/thesis_ready/figure_captions.md
-
-Add short captions for the thesis-ready charts.
-
-Example:
-
-Figure 3.X: Cost of Debt Bridge  
-This figure decomposes the transition from the legacy cost of debt to the tokenized cost of debt. The collateral efficiency spread reduces borrowing cost, while the technology risk premium offsets part of the benefit.
-
-Figure 3.X: Capital Liberated by Adoption Level  
-This figure shows how capital liberated changes as the tokenized share of marketable securities increases under normal market conditions.
-
-Figure 3.X: WACC Change under Stress Scenarios  
-This figure compares WACC changes under book-value and market-value capital structure weights across stress scenarios.
-
-Keep captions concise and academic.
-
-==================================================
-8. ADD A SHORT EXECUTIVE SUMMARY
-==================================================
+TASK 3 — Add plausibility check table
 
 Create:
 
-outputs/thesis_ready/executive_summary.md
+outputs/thesis_ready/tables/plausibility_checks.csv
+outputs/thesis_ready/reports/plausibility_checks.md
+
+Include these checks:
+
+1. tokenized_haircut <= legacy_haircut
+2. tokenized_buffer_ratio <= legacy_buffer_ratio
+3. adoption share remains partial and realistic
+4. tokenized cost of debt respects the debt cost floor
+5. book-value WACC and market-value WACC are both reported
+6. ROE effect is conditional on reinvestment
+7. capital liberated is not treated as newly created capital
+8. technology risk premium can offset collateral efficiency spread
+9. stress scenarios increase financial friction consistently
+10. Monte Carlo outputs remain within reasonable bounds
+
+Columns:
+
+- Check
+- Rule
+- Result: PASS / WARNING / FAIL
+- Explanation
+- Affected output
+
+This table should be written for thesis defense purposes, meaning it should help answer the jury question:
+“Is the model financially consistent?”
+
+TASK 4 — Add interpretation hierarchy report
+
+Create:
+
+outputs/thesis_ready/reports/interpretation_hierarchy.md
+
+Write it in clear academic finance language, but not paper-style.
+
+Use this structure:
+
+1. Robust results
+   - additional usable collateral
+   - capital liberated
+
+Explain that these are the strongest results because they follow directly from lower haircuts and lower effective liquidity buffer requirements.
+
+2. Conditional results
+   - cost of debt change
+   - WACC change
+
+Explain that these depend on whether the collateral efficiency spread is larger than the technology, legal, custody, and oracle risk premium. Also explain the role of the debt cost floor.
+
+3. Highly conditional results
+   - ROE change
+
+Explain that ROE improvement depends on whether liberated capital is reinvested productively. Do not present ROE improvement as an automatic result of tokenization.
+
+The tone should be suitable for Chapter 3 results interpretation, not a journal article.
+
+TASK 5 — Add model logic diagram
+
+Create:
+
+outputs/thesis_ready/charts/model_logic_diagram.png
+outputs/thesis_ready/reports/model_logic_diagram.md
+
+The diagram should show:
+
+Marketable Securities
+→ Tokenized Asset Share
+→ Tokenized Collateral Pool
+→ Haircut Reduction
+→ Additional Usable Collateral
+→ Liquidity Buffer Reduction
+→ Capital Liberated
+→ Funding Cost Adjustment
+→ WACC Change
+→ Conditional ROE Change
+
+Also add a risk-offset channel:
+
+Technology / Legal / Custody / Oracle Risk Premium
+→ increases tokenized cost of debt
+→ may reduce or reverse WACC benefit
+
+The diagram should be simple, clean, and thesis-ready.
+
+TASK 6 — Improve executive summary formatting
+
+If outputs/thesis_ready/executive_summary.md already exists, improve its formatting.
 
 It should include:
 
-- baseline result summary
-- adoption result summary
-- stress result summary
-- Monte Carlo summary
-- sensitivity summary
-- main interpretation
+1. Purpose of the simulation
+2. Case company and why Apple is used
+3. Baseline result
+4. Adoption scenario result
+5. Stress scenario result
+6. Monte Carlo and sensitivity result
+7. Main interpretation
 
-Main interpretation:
+The writing must be direct and useful for Chapter 3.
+Do not make it sound like a paper abstract.
+Do not overclaim.
+Do not say tokenization automatically improves firm value.
 
-The model suggests that tokenized collateral has its most robust effect through liquidity efficiency and capital liberated. WACC effects are conditional on funding-cost assumptions and capital-structure weights. ROE effects depend on whether liberated capital is productively redeployed.
+TASK 7 — Add Chapter 3 ready report
 
-Keep it short. This is only to help me write the thesis, not to replace the thesis.
+Create:
 
-==================================================
-9. KEEP MATRIX / GRID OUTPUTS AS OPTIONAL
-==================================================
+outputs/thesis_ready/reports/chapter_3_results_pack.md
 
-If the repo currently generates adoption-stress grids, matrices, or heatmaps, keep them in the full outputs folder.
+This should combine the thesis-ready outputs in the same order as my Chapter 3 structure:
 
-But do not include them in thesis_ready unless I explicitly ask.
+3.1 Research Design
+- short note pointing to the model logic diagram
 
-The written thesis will focus on:
+3.2 Data and Sample Construction
+- company baseline table
+- variable definition table
+- parameter justification table
 
+3.3 Methodology
+- scenario design table
+- model assumptions
+- plausibility check table
+
+3.4 Results
 - baseline results
-- adoption results
-- stress results
-- robustness and sensitivity results
+- adoption scenario results
+- stress scenario results
+- Monte Carlo robustness results
+- sensitivity results
+- financial interpretation
 
-The full grid can stay as an auxiliary output.
+3.5 Discussion
+- implications for financial market efficiency
+- implications for firms
+- implications for investors and market infrastructure
+- regulatory and practical considerations
+- limitations
+- future research
 
-==================================================
-10. ADD BASIC TESTS ONLY
-==================================================
+This file should not rewrite the whole thesis chapter.
+It should be a practical results pack that helps me copy tables, figures, captions, and interpretation into my thesis.
 
-Add minimal pytest tests:
+TASK 8 — Improve figure captions
 
-1. tokenized haircut <= legacy haircut in base scenario
-2. tokenized buffer ratio <= legacy buffer ratio in base scenario
-3. market cap affects WACC but not capital liberated
-4. ROE uses book equity only
-5. changing adoption changes tokenized pool and capital liberated
-6. Monte Carlo with same seed is reproducible
+Create or update:
 
-Do not overbuild tests.
+outputs/thesis_ready/figure_captions.md
 
-==================================================
-11. UPDATE EXPORT ZIP
-==================================================
+Each caption should explain:
 
-If the repo already creates a ZIP file, make sure it includes:
+- what the figure shows
+- why it matters
+- how to interpret it
+- whether the result is robust or conditional
 
-- full outputs
-- thesis_ready folder
-- docs/methodology_note.md
-- docs/source_map.md
+Keep captions short and academic.
 
-==================================================
-12. FINAL RULES
-==================================================
+TASK 9 — Add appendix-style files
 
-Do not make the repo bigger than necessary.
+Create:
 
-Do not add a dashboard.
+outputs/thesis_ready/appendix/variables_and_equations.md
+outputs/thesis_ready/appendix/assumptions_and_limits.md
+outputs/thesis_ready/appendix/reproducibility.md
 
-Do not add a long report generator unless it already exists.
+variables_and_equations.md:
+- list all variables
+- symbols
+- definitions
+- equations
 
-Do not introduce new financial assumptions.
+assumptions_and_limits.md:
+- list calibrated assumptions
+- explain why they are used
+- explain that they are not directly observed market facts
 
-Do not change the model logic unless needed to fix bugs.
+reproducibility.md:
+- how to run the model
+- Python command
+- required files
+- output folders
 
-The final repo should feel like:
+TASK 10 — Add or update CLI command
 
-Python repo = clean research engine
-Thesis paper = main written analysis
+If the repo already has a thesis-ready command, update it.
 
-The repo should mainly help me produce reliable tables, clean charts, and clear documentation for Chapter 3.
+The command should generate:
+
+- thesis-ready tables
+- thesis-ready charts
+- parameter justification table
+- plausibility checks
+- interpretation hierarchy
+- chapter_3_results_pack.md
+- appendix files
+
+Use the existing CLI style.
+
+Example command:
+
+python -m rwa_model.cli thesis-ready
+
+Do not create a paper-ready command.
+
+TASK 11 — Update README
+
+Update README.md with a short section:
+
+“Generating thesis-ready outputs”
+
+Include:
+
+- command to run
+- output folder
+- what files are generated
+- warning that these outputs are for thesis Chapter 3 and not a journal paper
+
+STYLE RULES
+
+- Write in academic finance language, but keep it readable.
+- Keep the tone serious and balanced.
+- Do not make it journal-paper style.
+- Do not create abstract/introduction/literature/conclusion sections.
+- Do not overclaim.
+- Do not say “this proves.”
+- Use wording like:
+  - “the simulation suggests”
+  - “under the calibrated assumptions”
+  - “the result is conditional”
+  - “the result is robust within the tested range”
+- Separate robust results from conditional results.
+- Treat Apple as a computational baseline.
+- Be honest about scenario-calibrated assumptions.
+- Do not invent citations.
+
+FINAL RESPONSE AFTER IMPLEMENTATION
+
+After editing the repo, summarize:
+
+- files added
+- files modified
+- how to run the thesis-ready output
+- where the Chapter 3 results pack is saved
+- any warnings or missing assumptions
