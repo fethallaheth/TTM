@@ -12,7 +12,7 @@ from rwa_model.config import load_config
 from rwa_model.engine import LIQUIDITY_MARKETABLE, LIQUIDITY_TOTAL_LIQUID, run_model
 from rwa_model.monte_carlo import run_monte_carlo
 from rwa_model.sensitivity import run_sensitivity
-from rwa_model.tables import build_tables, export_tables
+from rwa_model.tables import build_tables, export_tables, validate_export_consistency
 from rwa_model.thesis_outputs import export_thesis_ready_outputs
 from rwa_model.utils import bns, ensure_output_dirs, pct
 
@@ -50,6 +50,7 @@ def run(
     sensitivity_df = run_sensitivity(config, liquidity_base)
     tables = build_tables(config, model_run, mc_df, sensitivity_df)
     export_tables(tables, paths["tables"], paths["reports"])
+    validate_export_consistency(paths["tables"])
     mc_df.to_csv(paths["tables"] / "monte_carlo_simulations.csv", index=False)
     save_all_charts(config, model_run, mc_df, sensitivity_df, paths["charts"])
     export_thesis_ready_outputs(config, model_run, mc_df, sensitivity_df, paths["outputs"] / "thesis_ready")

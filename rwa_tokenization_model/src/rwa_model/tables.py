@@ -127,5 +127,44 @@ def export_tables(tables: dict[str, pd.DataFrame], tables_dir: Path, reports_dir
         _write_sheet(writer, tables["parameters_used"], "Parameters Used")
 
 
+def validate_export_consistency(tables_dir: Path) -> None:
+    """Fail if exported parameter and baseline tables contradict each other."""
+    baseline_path = tables_dir / "baseline_summary.csv"
+    parameters_path = tables_dir / "parameters_used.csv"
+    if not baseline_path.exists() or not parameters_path.exists():
+        raise FileNotFoundError("baseline_summary.csv and parameters_used.csv are required for consistency checks")
+
+    baseline = pd.read_csv(baseline_path)
+    parameters = pd.read_csv(parameters_path)
+    params = dict(zip(parameters["parameter"], parameters["value"]))
+    floor_enabled = _parse_bool(params.get("market_inputs.debt_cost_floor_enabled"))
+    floor_adjustment = float(baseline.loc[0, "floor_adjustment"])
+    raw_cost = float(baseline.loc[0, "raw_tokenized_cost_of_debt"])
+    final_cost = float(baseline.loc[0, "final_tokenized_cost_of_debt"])
+
+    if floor_enabled is False and abs(floor_adjustment) > 1e-12:
+        raise ValueError(
+            "Output inconsistency: debt_cost_floor_enabled is false but baseline_summary.csv "
+            f"shows floor_adjustment={floor_adjustment}"
+        )
+    if floor_enabled is False and abs(final_cost - raw_cost) > 1e-12:
+        raise ValueError(
+            "Output inconsistency: debt_cost_floor_enabled is false but final_tokenized_cost_of_debt "
+            "does not equal raw_tokenized_cost_of_debt"
+        )
+
+
 def _write_sheet(writer: Any, frame: pd.DataFrame, sheet_name: str) -> None:
     frame.to_excel(writer, sheet_name=sheet_name, index=False)
+
+
+def _parse_bool(value: Any) -> bool | None:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized == "true":
+            return True
+        if normalized == "false":
+            return False
+    return None
